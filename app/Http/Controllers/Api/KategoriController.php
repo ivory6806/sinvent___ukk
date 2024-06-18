@@ -24,7 +24,18 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'deskripsi'   => 'required',
+            'kategori'    => 'required',
+        ]);
+        
+        $kategoribaru = Kategori::create([
+            'deskripsi'  => $request->deskripsi,
+            'kategori'   => $request->kategori,
+        ]);
+
+        $databaru = array("data"=>$kategoribaru);
+        return response()->json($databaru);
     }
 
     /**
